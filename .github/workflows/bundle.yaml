@@ -1,0 +1,16 @@
+on: push
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Generate version
+        id: version
+        uses: codacy/git-version@80c816f11db8dea5e3a81025f598193015b51832
+      - uses: actions/upload-artifact@v3
+        with:
+          name: deako-${{ steps.version.outputs.version }}
+          path: src/
