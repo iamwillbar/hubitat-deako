@@ -10,7 +10,9 @@ jobs:
       - name: Generate version
         id: version
         uses: codacy/git-version@80c816f11db8dea5e3a81025f598193015b51832
+        with:
+          release-branch: main
       - uses: actions/upload-artifact@v3
         with:
-          name: deako-${{ steps.version.outputs.version }}
+          name: hubitat-deako-${{ steps.version.outputs.version }}
           path: src/
